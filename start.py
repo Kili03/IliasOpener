@@ -1,4 +1,5 @@
 import webbrowser
+import json
 
 courses = {
     "HM1": {"id": "1896358", "name": "Course A"},
@@ -8,7 +9,9 @@ courses = {
     "GBI": {"id": "1904386", "name": "Course E"}
 }
 
-
+with open("courses.json", "w") as f:
+    json.dump(courses, f)
+    
 s = input()
 course = courses["HM1"]["name"]
 print(course)
