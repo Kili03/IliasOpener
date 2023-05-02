@@ -9,6 +9,8 @@ if check in courses:
     while name != "end":
         if name not in courses[check]:
             id = input()
+            if len(id) > 10:
+                id = id[47:54]
             courses[check][name] = id
             name = input()
         else:
@@ -19,12 +21,16 @@ else:
     b = input(f"Add course {check} [y/n]")
     if b == "y":
         id = input("Course Id: ")
+        if len(id) > 10:
+            id = id[47:54]
         courses[check] = {"id" : id}
 
         name = input()
         while name != "end":
             if name not in courses[check]:
                 id = input()
+                if len(id) > 10:
+                    id = id[47:54]
                 courses[check][name] = id
                 name = input()
             else:
