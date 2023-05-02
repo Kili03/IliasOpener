@@ -14,7 +14,6 @@ if check in courses:
         else:
             print(f"{name} is already there")
             name = input()
-
   
 else:
     b = input(f"Add course {check} [y/n]")

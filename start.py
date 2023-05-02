@@ -9,11 +9,18 @@ courses = {
     "GBI": {"id": "1904386", "name": "Course E"}
 }
 
-with open("courses.json", "w") as f:
-    json.dump(courses, f)
-    
+with open("courses.json", "r") as f:
+    courses = json.load(f)
+
 s = input()
-course = courses["HM1"]["name"]
-print(course)
+if "/" in s:
+    course, group = s.split("/")
+    id = courses[course][group]
+
+else:
+    id = courses[s]["id"]
+
+#course = courses["HM1"]["name"]
+print(id)
 
 #webbrowser.open_new_tab(f"https://ilias.studium.kit.edu/ilias.php?ref_id={course}&cmdClass=ilrepositorygui&cmdNode=x0&baseClass=ilrepositorygui")
