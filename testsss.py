@@ -12,7 +12,6 @@ courses = {
 }
 
 
-
 def open(r, root):
     print("worked")
     print(r)
