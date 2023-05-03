@@ -15,6 +15,9 @@ courses = {
 with open("courses.json", "r") as f:
     courses = json.load(f)
 
+def destroy(root):
+    root.destroy()
+
 '''def open(r, root):
     print("worked")
     print(r)
@@ -65,8 +68,11 @@ def callback(root, sv2, r):
         if (sss.isdigit()):
             sss = list3[int(sss)]
         id = courses[s][ss][sss]
-        webbrowser.open_new_tab(f"https://ilias.studium.kit.edu/ilias.php?ref_id={id}&cmdClass=ilrepositorygui&cmdNode=x0&baseClass=ilrepositorygui")
-        root.destroy()
+        if len(id) > 10:
+            webbrowser.open_new_tab(id)
+        else:
+            webbrowser.open_new_tab(f"https://ilias.studium.kit.edu/ilias.php?ref_id={id}&cmdClass=ilrepositorygui&cmdNode=x0&baseClass=ilrepositorygui")
+        root.quit()
         #sv2.set("")
         
         
@@ -79,7 +85,7 @@ def on_hotkey():
     sv = StringVar()
     sv.trace("w", lambda name, index, mode, sv=sv: callback(root, sv, r))
     e = Entry(root, textvariable=sv)
-    r = Label(root, text="")
+    r = Label(root, text="W22/0\nS23/1")
 
    
     #Button(root, text = "open", command=lambda: open(e.get(), root)).pack()
@@ -93,6 +99,7 @@ def on_hotkey():
     #e.focus()
     root.after(1, lambda: (root.focus_force(), e.focus()))
     root.mainloop()
+    root.destroy()
 
 # Register the hotkey
 keyboard.add_hotkey('ctrl+alt+t', on_hotkey)
