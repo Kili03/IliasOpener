@@ -81,7 +81,7 @@ def on_hotkey():
     # Open a Tkinter window
     root = Tk()
     # Add some widgets to the window
-    label = Label(root, text="You prefffssed Ctrl+Alt+T!")
+    label = Label(root, text="Enter Page Code to open")
     sv = StringVar()
     sv.trace("w", lambda name, index, mode, sv=sv: callback(root, sv, r))
     e = Entry(root, textvariable=sv)
@@ -99,7 +99,10 @@ def on_hotkey():
     #e.focus()
     root.after(1, lambda: (root.focus_force(), e.focus()))
     root.mainloop()
-    root.destroy()
+    try:
+        root.destroy()
+    except TclError:
+        print("Window closed")
 
 # Register the hotkey
 keyboard.add_hotkey('ctrl+alt+t', on_hotkey)
