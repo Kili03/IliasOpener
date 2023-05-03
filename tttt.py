@@ -3,19 +3,24 @@ import json
 with open("courses.json", "r") as f:
     courses = json.load(f)
 
+list = ["W22", "S23"]
+
+s = input("Semester[W22/S23]: ")
+if (s.isdigit()):
+    s = list[int(s)]
 check = input("Course to add/edit: ")
-if check in courses:
-    name = input()
+if check in courses[s]:
+    name = input("Name: ")
     while name != "end":
-        if name not in courses[check]:
-            id = input()
+        if name not in courses[s][check]:
+            id = input("ID: ")
             if len(id) > 10:
                 id = id[47:54]
-            courses[check][name] = id
-            name = input()
+            courses[s][check][name] = id
+            name = input("Name: ")
         else:
             print(f"{name} is already there")
-            name = input()
+            name = input("Name: ")
   
 else:
     b = input(f"Add course {check} [y/n]")
@@ -23,19 +28,18 @@ else:
         id = input("Course Id: ")
         if len(id) > 10:
             id = id[47:54]
-        courses[check] = {"id" : id}
-
-        name = input()
+        courses[s][check] = {"id" : id}
+        name = input("Name: ")
         while name != "end":
-            if name not in courses[check]:
-                id = input()
+            if name not in courses[s][check]:
+                id = input("ID: ")
                 if len(id) > 10:
                     id = id[47:54]
-                courses[check][name] = id
-                name = input()
+                courses[s][check][name] = id
+                name = input("Name: ")
             else:
                 print(f"{name} is already there")
-                name = input()
+                name = input("Name: ")
 
     else:
         print(f"didn't add course {check}")
