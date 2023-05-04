@@ -28,7 +28,7 @@ def destroy(root):
 
     root.destroy()'''
 
-list = ["W22", "S23"]
+list = ["W22", "S23", "SW"]
 
 def callback(root, sv2, r):
     print(sv2.get())
@@ -56,6 +56,10 @@ def callback(root, sv2, r):
         i = 0
         list3 = []
         rs = ""
+        if (type(courses[s][ss]) != type({})):
+            id = courses[s][ss]
+            webbrowser.open_new_tab(id)
+            root.quit()
         for e in courses[s][ss]:
             print(f"{e}/{i}")
             rs += f"{e}/{i}\n"
@@ -85,7 +89,14 @@ def on_hotkey():
     sv = StringVar()
     sv.trace("w", lambda name, index, mode, sv=sv: callback(root, sv, r))
     e = Entry(root, textvariable=sv)
-    r = Label(root, text="W22/0\nS23/1")
+
+    y = ""
+    i = 0
+    for year in courses:
+        y += f"{year}/{i}\n"
+        i += 1
+
+    r = Label(root, text=y)
 
    
     #Button(root, text = "open", command=lambda: open(e.get(), root)).pack()
